@@ -1,0 +1,71 @@
+performance_analysis_task:
+  description: > 
+    User query : {query}
+    Parse the natural language performance query to extract:
+      1. Query type (single campaign, multiple campaigns, comparison, aggregation)
+      2. Specific campaigns or campaign criteria mentioned
+      3. Metrics of interest (impressions, CTR, ROI, engagement, etc.)
+      4. Time period for analysis (last 7 days, month, custom range)
+      5. Comparison criteria (top/bottom performers, location-based, etc.)
+      6. Sorting and filtering preferences
+      
+      Return a structured JSON with all query parameters and intent.
+  expected_output: >
+    A structured JSON containing:
+      - query_type: Type of query (single, multiple, comparison, aggregate)
+      - campaign_ids: Specific campaign IDs if mentioned
+      - campaign_filters: Criteria for selecting campaigns
+      - metrics: List of metrics to retrieve
+      - time_period: Time range for analysis
+      - aggregation_type: How to aggregate (sum, average, top_n, bottom_n)
+      - sort_by: Metric to sort results by
+      - limit: Number of results to return
+
+metrics_aggregate_task:
+  description: >
+    Query the campaign performance database to retrieve metrics based on:
+    1. Campaign selection criteria from parsed query
+    2. Specific metrics requested (impressions, clicks, CTR, CPA, ROI, etc.)
+    3. Time period constraints
+    4. Aggregation requirements (by campaign, location, time period)
+    5. Sorting and limiting criteria
+    
+    Use the Performance Analytics tools to efficiently query campaign_metrics,
+    campaign_configurations, and campaign_locations tables.
+    Calculate derived metrics like CTR, CPA, and ROAS as needed.
+    
+    Available tools:
+    - Query Campaign Metrics: Get metrics for specific campaigns
+    - Aggregate Performance Data: Get top/bottom performers
+    - Calculate ROI Metrics: Detailed ROI analysis
+    - Compare Campaigns: Side-by-side comparison
+    - Get Time Series Data: Performance over time
+  expected_output: >
+    A structured dataset containing:
+    - campaign_data: List of campaigns with their metrics
+    - aggregated_metrics: Overall performance summaries
+    - time_series_data: Performance over time if requested
+    - location_performance: Performance by location if relevant
+    - calculated_metrics: CTR, CPA, ROAS, engagement rates
+    - comparison_results: Comparative analysis if requested
+
+insight_generator_task:
+  description:  >
+    Analyze the performance data to generate insights and recommendations:
+    1. Identify performance trends and patterns
+    2. Highlight top and bottom performing campaigns or locations
+    3. Calculate performance against benchmarks or goals
+    4. Identify optimization opportunities
+    5. Provide actionable recommendations for improvement
+    6. Summarize key findings in business-friendly language
+    
+    Focus on actionable insights that can drive decision-making.
+  expected_output:  >
+    A comprehensive insights report containing:
+    - executive_summary: High-level performance overview
+    - key_findings: Most important discoveries
+    - performance_highlights: Top performers and achievements
+    - areas_for_improvement: Underperforming areas
+    - recommendations: Specific actions to improve performance
+    - trend_analysis: Performance trends over time
+    - roi_analysis: Return on investment insights
