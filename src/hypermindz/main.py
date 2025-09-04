@@ -2,6 +2,8 @@
 import sys
 from hypermindz.crew import PerformanceCrew
 
+from dotenv import load_dotenv
+load_dotenv()
 
 def run():
     """
